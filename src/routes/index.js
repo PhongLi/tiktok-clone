@@ -7,7 +7,7 @@ import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 
-//public Ruutes
+//public Routes
 export const publicRoutes = [
     { path: '/', component: Home },
     { path: '/following', component: Following },
