@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 
-import AccountItem from '~/Components/AccountItem'
+import Button from '~/Components/Button';
+import AccountItem from '~/Components/AccountItem';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Tippy from '@tippyjs/react/headless';
@@ -30,9 +31,7 @@ function Header() {
                     render={(attrs) => (
                         <div className={cx('search-results')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
-                                <h4 className={cx('search-title')}>
-                                    Accounts
-                                </h4>
+                                <h4 className={cx('search-title')}>Accounts</h4>
                                 <AccountItem />
                                 <AccountItem />
                                 <AccountItem />
@@ -54,7 +53,10 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('actions')}></div>
+                <div className={cx('actions')}>
+                    <Button type="text" leftIcon={<FontAwesomeIcon icon={faPlus} />}>Upload</Button>
+                    <Button type="primary">Login</Button>
+                </div>
             </div>
         </header>
     );
