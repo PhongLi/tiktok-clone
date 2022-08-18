@@ -3,6 +3,8 @@
 
 :root {
     --primary: #fe2c55;
+    --black: #000;
+    --text-color: #333;
 
     // default Layout
     --default-layout-header-height: 60px;
@@ -19,7 +21,20 @@ html {
 
 body {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.6rem ;
+    font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
 }
