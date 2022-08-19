@@ -20,8 +20,28 @@ import { faCircleQuestion, faKeyboard } from '@fortawesome/free-regular-svg-icon
 
 const cx = classNames.bind(styles);
 
+
+
 const MENU_ITEMS = [
-    { icon: <FontAwesomeIcon icon={faEarthAsia} />, title: 'Enlish' },
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'Enlish',
+        children: {
+            title: 'Languages',
+            data: [
+                {
+                    type: 'Languages',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'Languages',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
+    },
     { icon: <FontAwesomeIcon icon={faCircleQuestion} />, title: 'Feedback and help', to: '/feedback' },
     { icon: <FontAwesomeIcon icon={faKeyboard} />, title: 'Keyboard shorcuts' },
 ];
@@ -35,11 +55,17 @@ function Header() {
         }, 0);
     }, []);
 
+
+    const handelChangeMenu = (menuItem) => {
+        console.log(menuItem);
+    }
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
+                {/* Logo tiktok */}
                 <img src={images.logo} alt="logo"></img>
 
+                {/* Phần ô search */}
                 <Tippy
                     interactive
                     visible={searchResults.length > 0}
@@ -68,13 +94,15 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
+
+                {/* Phần actions bên phải */}
                 <div className={cx('actions')}>
                     <Button type="text" leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                         Upload
                     </Button>
-                    <Button type="primary" >Login</Button>
-
-                    <Menu items={MENU_ITEMS}>
+                    <Button type="primary">Login</Button>
+                    
+                    <Menu items={MENU_ITEMS} onChange={handelChangeMenu}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
