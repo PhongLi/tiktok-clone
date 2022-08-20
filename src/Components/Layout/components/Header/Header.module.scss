@@ -73,6 +73,9 @@
     color: rgba(22, 24, 35, 0.34);
 }
 .search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--search-btn-width);
     height: 100%;
     border-top-right-radius: var(--search-border-radius);
@@ -103,11 +106,28 @@
 }
 
 .action-btn {
+    display: inline-flex;
+    position: relative;
     font-size: 2.2rem;
     color: rgba(22, 24, 35, 1);
     background-color: transparent;
     padding: 4px 12px;
     cursor: pointer;
+
+    .badge {
+        position: absolute;
+        top: -3px;
+        right: 0px;
+        padding: 0px 6px;
+        height: 2rem;
+        line-height: 2rem;
+        border-radius: 10px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--white);
+        font-family: 'ProximaNova', sans-serif;
+        background-color: var(--primary);
+    }
 }
 
 .user-avatar {
