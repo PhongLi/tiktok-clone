@@ -50,6 +50,7 @@
         ]
     },
     "devDependencies": {
-        "babel-plugin-module-resolver": "^4.1.0"
+        "babel-plugin-module-resolver": "^4.1.0",
+        "eslint-plugin-react": "^7.30.1"
     }
 }
