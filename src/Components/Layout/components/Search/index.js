@@ -7,7 +7,7 @@ import { Wrapper as PopperWrapper } from '~/Components/Popper';
 import { SearchIcon } from '~/Components/Icons';
 import AccountItem from '~/Components/AccountItem';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
-
+// import { useDebounce } from '~/hooks'
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
@@ -17,15 +17,33 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    console.log('re-render')
+
+    const useDebounce = (value, delay) => {
+        const [debouncedValue, setDebouncedValue] = useState(value);
+        console.log('debouncedValue:',debouncedValue)
+        useEffect(() => {
+            const handler = setTimeout(() => setDebouncedValue(value), delay);
+    
+            return () => {clearTimeout(handler) 
+                console.log('clear');};
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [value]);
+        return debouncedValue;
+    }
+    const debounced = useDebounce(searchValue, 500) 
+
     const inputRef = useRef();
 
+    //1. ''
+    //2. 'h'
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResults([])
             return;
         }
         setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 setSearchResults(res.data);
@@ -34,7 +52,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             })
-    }, [searchValue]);
+    }, [debounced]);
 
     const handleHideResult = () => {
         setShowResult(false);
