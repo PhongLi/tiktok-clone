@@ -1,5 +1,4 @@
 import HeadlessTippy from '@tippyjs/react/headless';
-import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,6 +52,17 @@ function Search() {
         setSearchResults([]);
         setSearchValue('');
     };
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value
+        if( !searchValue.startsWith(' '))
+        {
+            setSearchValue(searchValue)
+        }
+        return
+    }
+
+
     return (
         <HeadlessTippy
             interactive
@@ -75,7 +85,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                 />
                 {!!searchValue && !loading && (
@@ -86,7 +96,7 @@ function Search() {
 
                 {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => {e.preventDefault()}}>
                     <SearchIcon />
                 </button>
             </div>

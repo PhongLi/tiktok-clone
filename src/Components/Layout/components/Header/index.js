@@ -12,6 +12,8 @@ import {
     faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircleQuestion, faKeyboard } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
+import routesConfig from "~/config/routes";
 
 import Button from "~/Components/Button";
 import styles from "./Header.module.scss";
@@ -90,7 +92,7 @@ function Header() {
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
                 {/* Logo tiktok */}
-                <img src={images.logo} alt="logo"></img>
+                <Link to={routesConfig.home} className={cx('logo-link')}><img src={images.logo} alt="logo"></img></Link>
 
                 {/* Search */}
                 <Search />

@@ -10,7 +10,7 @@ import Header from './Header';
 const defaultFunc = () => {};
 
 const cx = classNames.bind(styles);
-function Menu({ children, items = [], onChange = defaultFunc }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFunc }) {
     const [history, setHistory] = useState([{ data: items }]);
     // render ra phần tử cuối cùng trong mảng Items
     const current = history[history.length - 1];
@@ -40,6 +40,7 @@ function Menu({ children, items = [], onChange = defaultFunc }) {
             interactive
             offset={[12, 9]}
             delay={[0, 700]}
+            hideOnClick={hideOnClick}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
