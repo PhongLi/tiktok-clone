@@ -129,7 +129,7 @@ function Header() {
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handelChangeMenu}>
                         {currentUser ? (
                             <Image
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b4f45ab45c999aac225a7322dc33237f~c5_300x300.webp?x-expires=1660986000&x-signature=LxCZ77oIKi%2FvgGlkN2qVERpmpJY%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1966fcda97fb1bc61ca3625ac98a5714~c5_100x100.jpeg?x-expires=1661335200&x-signature=5paJWjHhVeqbI3rdQ%2F8bixrMf%2FU%3D"
                                 className={cx("user-avatar")}
                                 alt="nguyen van a"
                             />
