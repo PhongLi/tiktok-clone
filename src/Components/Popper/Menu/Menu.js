@@ -12,7 +12,6 @@ const defaultFunc = () => {};
 
 const cx = classNames.bind(styles);
 
-
 function Menu({ children, items = [], hideOnClick = false, onChange = defaultFunc }) {
     const [history, setHistory] = useState([{ data: items }]);
     // render ra phần tử cuối cùng trong mảng Items
@@ -37,9 +36,21 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
         });
     };
 
+    // Reset to first page
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
+    const handleBack = () => {
+         // setHistory(prev => prev.slice( 0, history.length - 1 ))
+         const newHistory = [...history];
+         newHistory.splice(newHistory.length - 1, 1);
+         setHistory(newHistory);
+    }
     return (
         <Tippy
             interactive
+            visible
             offset={[12, 9]}
             delay={[0, 700]}
             hideOnClick={hideOnClick}
@@ -50,12 +61,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
                         {history.length > 1 && (
                             <Header
                                 title={current.title}
-                                onBack={() => {
-                                    // setHistory(prev => prev.slice( 0, history.length - 1 ))
-                                    const newHistory = [...history];
-                                    newHistory.splice(newHistory.length - 1, 1);
-                                    setHistory(newHistory);
-                                }}
+                                onBack={handleBack}
                             />
                         )}
 
@@ -64,7 +70,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
                     </PopperWrapper>
                 </div>
             )}
-            onHide={() => setHistory((prev) => prev.slice(0, 1))}
+            onHide={handleResetMenu}
         >
             {children}
         </Tippy>
@@ -76,6 +82,6 @@ Menu.propTypes = {
     items: PropTypes.array,
     hideOnClick: PropTypes.bool,
     onChange: PropTypes.func,
-}
+};
 
 export default Menu;
