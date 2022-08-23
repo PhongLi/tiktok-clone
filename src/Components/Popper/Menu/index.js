@@ -51,6 +51,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
                             newHistory.splice(newHistory.length-1, 1)
                             setHistory(newHistory)
                         }}/>}
+                        
+                        {/* render list data in menu */}
                         <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
