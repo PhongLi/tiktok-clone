@@ -50,7 +50,6 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFun
     return (
         <Tippy
             interactive
-            visible
             offset={[12, 9]}
             delay={[0, 700]}
             hideOnClick={hideOnClick}

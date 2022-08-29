@@ -89,6 +89,7 @@ function Search() {
                         onChange={handleChange}
                         onFocus={() => setShowResult(true)}
                     />
+                    {/* have values and not loading */}
                     {!!searchValue && !loading && (
                         <button className={cx('clear')} onClick={handleClear}>
                             <FontAwesomeIcon icon={faCircleXmark} />
